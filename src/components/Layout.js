@@ -1,8 +1,10 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
+import PropTypes from "prop-types";
 
 import Header from "./Header";
+import Navbar from "./Navbar";
 
 import "../styles/styles.scss";
 
@@ -53,6 +55,7 @@ const TemplateWrapper = ({ children }) => (
           <meta property="og:image" content="/img/og-image.jpg" />
         </Helmet>
         <Header />
+        <Navbar />
         <div>{children}</div>
       </main>
     )}
@@ -60,3 +63,7 @@ const TemplateWrapper = ({ children }) => (
 );
 
 export default TemplateWrapper;
+
+TemplateWrapper.propTypes = {
+  children: PropTypes.element.isRequired
+};

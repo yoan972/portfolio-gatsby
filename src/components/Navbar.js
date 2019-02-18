@@ -45,32 +45,32 @@ const Navbar = class extends React.Component {
           <div className="footer">
             <div className="footer__inner--left">
               <p className="footer__social">
-                <Link
+                <a
                   className="footer__link"
-                  to="mailto:yoan.hillion@hotmail.fr"
+                  href="mailto:yoan.hillion@hotmail.fr"
                 >
                   yoan.hillion@hotmail.fr
-                </Link>
+                </a>
               </p>
             </div>
             <div className="footer__inner--right">
               <p className="footer__social">
-                <Link
+                <a
                   className="footer__link"
-                  to="https://www.linkedin.com/in/yoan-hillion-b94322a4"
+                  href="https://www.linkedin.com/in/yoan-hillion-b94322a4"
                 >
                   Linkedin
-                </Link>
+                </a>
               </p>
               <p className="footer__social">
-                <Link className="footer__link" to="https://twitter.com/Y0anH">
+                <a className="footer__link" href="https://twitter.com/Y0anH">
                   Twitter
-                </Link>
+                </a>
               </p>
               <p className="footer__social">
-                <Link className="footer__link" to="https://github.com/yoan972">
+                <a className="footer__link" href="https://github.com/yoan972">
                   Github
-                </Link>
+                </a>
               </p>
             </div>
           </div>

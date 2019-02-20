@@ -1,7 +1,8 @@
 ---
 templateKey: "about-page"
 path: /about
-title: Programm or be programmed !
+title: Programm
+titleHoverlined: or be programmed !
 ---
 
 ## About me

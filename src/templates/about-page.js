@@ -1,23 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
 
 import download from "../assets/images/download.svg";
+import cv from "../assets/images/CV_YoanHillion.pdf";
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
+export const AboutPageTemplate = ({
+  frontmatter,
+  content,
+  contentComponent
+}) => {
   const PageContent = contentComponent || Content;
 
   return (
     <div>
-      <h1 className="presentation">{title}</h1>
+      <h1 className="presentation">
+        <span className="bold">{`${frontmatter.title} `}</span>
+        <span className="hoverline">{frontmatter.titleHoverlined}</span>
+      </h1>
       <section className="about">
         <PageContent content={content} />
         <p className="about__button">
-          <Link to="/" className="form__button" download="">
+          <a href={cv} className="form__button" download="">
             Full CV
-          </Link>
+          </a>
           <img src={download} alt="download-arrow" className="download-arrow" />
         </p>
       </section>
@@ -31,7 +39,7 @@ AboutPageTemplate.defaultProps = {
 };
 
 AboutPageTemplate.propTypes = {
-  title: PropTypes.string.isRequired,
+  frontmatter: PropTypes.arrayOf(PropTypes.string).isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func
 };
@@ -43,7 +51,7 @@ const AboutPage = ({ data }) => {
     <Layout>
       <AboutPageTemplate
         contentComponent={HTMLContent}
-        title={post.frontmatter.title}
+        frontmatter={post.frontmatter}
         content={post.html}
       />
     </Layout>
@@ -55,7 +63,8 @@ AboutPage.propTypes = {
     markdownRemark: PropTypes.shape({
       html: PropTypes.string,
       frontmatter: PropTypes.shape({
-        title: PropTypes.string
+        title: PropTypes.string,
+        titleHoverlined: PropTypes.string
       })
     })
   }).isRequired
@@ -69,6 +78,7 @@ export const aboutPageQuery = graphql`
       html
       frontmatter {
         title
+        titleHoverlined
       }
     }
   }

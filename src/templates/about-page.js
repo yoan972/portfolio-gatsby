@@ -1,55 +1,79 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import Layout from "../components/Layout";
+import Content, { HTMLContent } from "../components/Content";
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
-  const PageContent = contentComponent || Content
+import download from "../assets/images/download.svg";
+import cv from "../assets/images/CV_YoanHillion.pdf";
+
+export const AboutPageTemplate = ({
+  title,
+  titleHoverlined,
+  content,
+  contentComponent
+}) => {
+  const PageContent = contentComponent || Content;
 
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <PageContent className="content" content={content} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+    <div>
+      <h1 className="presentation">
+        <span className="bold">{`${title} `}</span>
+        <span className="hoverline">{titleHoverlined}</span>
+      </h1>
+      <section className="about">
+        <PageContent content={content} />
+        <p className="about__button">
+          <a href={cv} className="form__button" download="">
+            Full CV
+          </a>
+          <img src={download} alt="download-arrow" className="download-arrow" />
+        </p>
+      </section>
+    </div>
+  );
+};
+
+AboutPageTemplate.defaultProps = {
+  content: "",
+  contentComponent: {}
+};
 
 AboutPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  titleHoverlined: PropTypes.string.isRequired,
   content: PropTypes.string,
-  contentComponent: PropTypes.func,
-}
+  contentComponent: PropTypes.func
+};
 
 const AboutPage = ({ data }) => {
-  const { markdownRemark: post } = data
+  const { markdownRemark: post } = data;
 
   return (
     <Layout>
       <AboutPageTemplate
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        titleHoverlined={post.frontmatter.titleHoverlined}
         content={post.html}
       />
     </Layout>
-  )
-}
+  );
+};
 
 AboutPage.propTypes = {
-  data: PropTypes.object.isRequired,
-}
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      html: PropTypes.string,
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string,
+        titleHoverlined: PropTypes.string
+      })
+    })
+  }).isRequired
+};
 
-export default AboutPage
+export default AboutPage;
 
 export const aboutPageQuery = graphql`
   query AboutPage($id: String!) {
@@ -57,7 +81,8 @@ export const aboutPageQuery = graphql`
       html
       frontmatter {
         title
+        titleHoverlined
       }
     }
   }
-`
+`;

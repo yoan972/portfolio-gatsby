@@ -12,15 +12,22 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
   return (
     <div>
       <h1 className="presentation">{title}</h1>
-      <PageContent className="about" content={content} />
-      <p className="about__button">
-        <Link to="/" className="form__button" download="">
-          Full CV
-        </Link>
-        <img src={download} alt="download-arrow" className="download-arrow" />
-      </p>
+      <section className="about">
+        <PageContent content={content} />
+        <p className="about__button">
+          <Link to="/" className="form__button" download="">
+            Full CV
+          </Link>
+          <img src={download} alt="download-arrow" className="download-arrow" />
+        </p>
+      </section>
     </div>
   );
+};
+
+AboutPageTemplate.defaultProps = {
+  content: "",
+  contentComponent: {}
 };
 
 AboutPageTemplate.propTypes = {
@@ -44,7 +51,14 @@ const AboutPage = ({ data }) => {
 };
 
 AboutPage.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      html: PropTypes.string,
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string
+      })
+    })
+  }).isRequired
 };
 
 export default AboutPage;

@@ -1,27 +1,25 @@
 import React from "react";
 import { Link } from "gatsby";
+import PropTypes from "prop-types";
 
+// eslint-disable-next-line react/prefer-stateless-function
 const Navbar = class extends React.Component {
-  componentDidMount() {
-    const burger = document.querySelector(".hamburger");
-    const menu = document.querySelector(".menu");
-    const menuText = document.querySelector(".hamburger-text");
-
-    burger.addEventListener("click", () => {
-      burger.classList.toggle("is-active");
-      menu.classList.toggle("active");
-      if (menuText.textContent === "menu") {
-        menuText.innerHTML = "close";
-      } else {
-        menuText.innerHTML = "menu";
-      }
-      document.body.classList.toggle("lock-screen");
-    });
-  }
-
   render() {
+    const { menuActive } = this.props;
+    if (menuActive) {
+      // eslint-disable-next-line no-undef
+      document.body.classList.add("lock-screen");
+    }
+    if (!menuActive) {
+      // eslint-disable-next-line no-undef
+      document.body.classList.remove("lock-screen");
+    }
     return (
-      <nav className="menu" role="navigation" aria-label="main-navigation">
+      <nav
+        className={`menu ${!menuActive ? "" : "active"}`}
+        role="navigation"
+        aria-label="main-navigation"
+      >
         <div className="menu__inner">
           <ul>
             <li className="menu__item">
@@ -81,3 +79,7 @@ const Navbar = class extends React.Component {
 };
 
 export default Navbar;
+
+Navbar.propTypes = {
+  menuActive: PropTypes.bool.isRequired
+};

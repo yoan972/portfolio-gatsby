@@ -8,7 +8,8 @@ import download from "../assets/images/download.svg";
 import cv from "../assets/images/CV_YoanHillion.pdf";
 
 export const AboutPageTemplate = ({
-  frontmatter,
+  title,
+  titleHoverlined,
   content,
   contentComponent
 }) => {
@@ -17,8 +18,8 @@ export const AboutPageTemplate = ({
   return (
     <div>
       <h1 className="presentation">
-        <span className="bold">{`${frontmatter.title} `}</span>
-        <span className="hoverline">{frontmatter.titleHoverlined}</span>
+        <span className="bold">{`${title} `}</span>
+        <span className="hoverline">{titleHoverlined}</span>
       </h1>
       <section className="about">
         <PageContent content={content} />
@@ -39,7 +40,8 @@ AboutPageTemplate.defaultProps = {
 };
 
 AboutPageTemplate.propTypes = {
-  frontmatter: PropTypes.objectOf(PropTypes.string).isRequired,
+  title: PropTypes.string.isRequired,
+  titleHoverlined: PropTypes.string.isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func
 };
@@ -51,7 +53,8 @@ const AboutPage = ({ data }) => {
     <Layout>
       <AboutPageTemplate
         contentComponent={HTMLContent}
-        frontmatter={post.frontmatter}
+        title={post.frontmatter.title}
+        titleHoverlined={post.frontmatter.titleHoverlined}
         content={post.html}
       />
     </Layout>

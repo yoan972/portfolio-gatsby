@@ -39,7 +39,7 @@ AboutPageTemplate.defaultProps = {
 };
 
 AboutPageTemplate.propTypes = {
-  frontmatter: PropTypes.arrayOf(PropTypes.string).isRequired,
+  frontmatter: PropTypes.objectOf(PropTypes.string).isRequired,
   content: PropTypes.string,
   contentComponent: PropTypes.func
 };

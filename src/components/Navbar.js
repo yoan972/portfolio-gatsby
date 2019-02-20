@@ -6,14 +6,6 @@ import PropTypes from "prop-types";
 const Navbar = class extends React.Component {
   render() {
     const { menuActive } = this.props;
-    if (menuActive) {
-      // eslint-disable-next-line no-undef
-      document.body.classList.add("lock-screen");
-    }
-    if (!menuActive) {
-      // eslint-disable-next-line no-undef
-      document.body.classList.remove("lock-screen");
-    }
     return (
       <nav
         className={`menu ${!menuActive ? "" : "active"}`}

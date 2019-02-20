@@ -35,7 +35,7 @@ class Layout extends React.Component {
           }
         `}
         render={data => (
-          <div>
+          <div className={`${!this.state.menuActive ? "" : "lock-screen"}`}>
             <main className="main">
               <Helmet>
                 <html lang="en" />

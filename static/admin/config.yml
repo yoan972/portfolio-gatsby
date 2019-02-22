@@ -38,11 +38,7 @@ collections:
               default: "about-page",
             }
           - { label: "Title", name: "title", widget: "string" }
-          - {
-              label: "Title Hoverlined",
-              name: "titleHoverlined",
-              widget: "string",
-            }
+          - { label: "Title", name: "titleHoverlined", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
       - file: "src/pages/products/index.md"
         label: "Products Page"

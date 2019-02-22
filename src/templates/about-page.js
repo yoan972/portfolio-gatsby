@@ -34,14 +34,9 @@ export const AboutPageTemplate = ({
   );
 };
 
-AboutPageTemplate.defaultProps = {
-  content: "",
-  contentComponent: {}
-};
-
 AboutPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  titleHoverlined: PropTypes.string.isRequired,
+  titleHoverlined: PropTypes.string,
   content: PropTypes.string,
   contentComponent: PropTypes.func
 };

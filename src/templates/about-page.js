@@ -7,7 +7,7 @@ import Content, { HTMLContent } from "../components/Content";
 import download from "../assets/images/download.svg";
 import cv from "../assets/images/CV_YoanHillion.pdf";
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
+const AboutPageTemplate = ({ title, content, contentComponent }) => {
   const PageContent = contentComponent || Content;
 
   return (
@@ -28,6 +28,8 @@ export const AboutPageTemplate = ({ title, content, contentComponent }) => {
   );
 };
 
+export default AboutPageTemplate;
+
 AboutPageTemplate.defaultProps = {
   content: "",
   contentComponent: {}
@@ -39,7 +41,7 @@ AboutPageTemplate.propTypes = {
   contentComponent: PropTypes.func
 };
 
-const AboutPage = ({ data }) => {
+export const AboutPage = ({ data }) => {
   const { markdownRemark: post } = data;
 
   return (
@@ -64,8 +66,6 @@ AboutPage.propTypes = {
     })
   }).isRequired
 };
-
-export default AboutPage;
 
 export const aboutPageQuery = graphql`
   query AboutPage($id: String!) {
